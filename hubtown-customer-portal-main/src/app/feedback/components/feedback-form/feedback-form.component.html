@@ -1,0 +1,83 @@
+<div class="form-box">
+  <div class="form-wrapper">
+    <div style="display: flex; justify-content: flex-start; cursor: pointer;" (click)="goBack()" class="back">
+        <img src="images/left-arrow.svg" style="height: 15px; width: 15px; margin-top: 5px;" />
+        <p>Back</p>
+      </div>
+    <form [formGroup]="feedbackForm" (ngSubmit)="handleSubmit()">
+      <div class="form-header-bar">
+        <h3>Feedback</h3>
+        <!-- <button class="logout-btn" (click)="onLogoutClick()">Logout</button> -->
+      </div>
+      <div class="form-grid">
+
+        <!-- Name Field -->
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter your name" readonly />
+        </div>
+
+        <!-- Unit No. Field -->
+        <div class="form-group">
+          <label class="form-label">Unit No.</label>
+          <input type="text" class="form-control" formControlName="unitNo" placeholder="Unit number will be auto-filled"
+            readonly />
+        </div>
+
+        <!-- Building Name Field -->
+        <div class="form-group full-width">
+          <label class="form-label">Building Name</label>
+          <select class="form-control" formControlName="selectedProject" (click)="toggleDropdown('building')"
+            (blur)="closeDropdown('building')" (change)="onBuildingSelectionChange($event)">
+            <option value="" disabled>Select a project</option>
+            <option *ngFor="let option of buildingName" [value]="option?.booking?.building">
+              {{ option?.booking?.building }}
+            </option>
+          </select>
+          <div class="dropdown-img">
+            <img src="images/dropdown-icon.png" alt="dropdown-icon" [class.rotate]="isBuildingDropdown" />
+          </div>
+        </div>
+
+        <!-- CRM Person Field -->
+        <div class="form-group">
+          <label class="form-label">CRM Person</label>
+          <input type="text" class="form-control" formControlName="crmPerson" placeholder="Enter the CRM person" />
+        </div>
+
+        <!-- Information Required Field -->
+        <div class="form-group position-relative">
+          <label class="form-label">Information Required</label>
+          <select class="form-control" formControlName="informationRequired" (click)="toggleDropdown('info')"
+            (blur)="closeDropdown('info')">
+            <option value="" disabled>Select a info</option>
+            <option *ngFor="let option of feedbackInfo" [value]="option?.infId">
+              {{ option?.infDesc }}
+            </option>
+          </select>
+          <div class="dropdown-img">
+            <img src="images/dropdown-icon.png" alt="dropdown-icon" [class.rotate]="isInfoDropdown" />
+          </div>
+        </div>
+
+        <!-- Message Field -->
+        <div class="form-group full-width">
+          <label class="form-label">Message</label>
+          <textarea class="form-control" formControlName="message" placeholder="Enter your message" rows="4"
+            style="background-color: rgba(255, 255, 130, 0.281);"></textarea>
+          <small *ngIf="feedbackForm.get('message')?.hasError('required')" style="color: red">Message is
+            required.</small>
+          <small *ngIf="feedbackForm.get('message')?.hasError('minlength')" style="color: red">Message must be at least
+            10 characters long.</small>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group full-width">
+          <button type="submit" class="btn btn-warning">
+            {{ this.isLoading ? 'Submitting' : 'Submit' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

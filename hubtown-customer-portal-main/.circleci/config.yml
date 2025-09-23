@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  build_and_deploy:
+    docker:
+      - image: node:20  # Use the official Node.js 20 image from Docker Hub
+    working_directory: ~/repo
+    steps:
+      - checkout  
+      - run:
+          name: Install Dependencies
+          command: npm install 
+      - run:
+          name: Build Angular application
+          command: npm run build 
+      - run:
+          name: SSH into the instance and deploy
+          command: |
+            ssh -o StrictHostKeyChecking=no $USER@$DNS 'cd /var/www/html/ && sudo rm -rf *'
+            scp -r -o StrictHostKeyChecking=no dist/hubtown-customer-portal/browser/* $USER@$DNS:/var/www/html/
+            ssh -o StrictHostKeyChecking=no $USER@$DNS 'sudo systemctl restart apache2'
+            
+workflows:
+  deploy-hubtown-customer-portal:
+    jobs:
+      - build_and_deploy

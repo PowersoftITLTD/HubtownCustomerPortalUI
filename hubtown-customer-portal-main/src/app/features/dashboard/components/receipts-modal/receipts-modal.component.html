@@ -1,0 +1,108 @@
+<!-- Modal -->
+<div
+  class="modal aside-modal"
+  id="receiptsModal"
+  tabindex="-1"
+  aria-labelledby="receiptsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="HT-title">
+          <img src="images/receipts-icon.svg" />{{ viewDetail?.title }}
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-box-bordered">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  @for(hdr of viewDetail?.headers;track $index){
+                  <th>{{ hdr }}</th>
+                  }
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody style="text-align: end">
+                @for(d of viewDetail?.data; track $index){
+                <tr>
+                  <td>{{ d?.incrementNo }}</td>
+                  <td>{{ !d?.date ||d?.date?.startsWith('1900')? '-': (d?.date | date)}}</td>
+                  <td>{{ d?.uniqueNo }}</td>
+                  <td>{{ formatToINRCurrency(d?.amount) }}</td>
+                  <td
+                    style="
+                      cursor: pointer;
+                      word-break: break-word;
+                      white-space: normal;
+                      max-width: 200px;
+                    "
+                    [title]="d?.invoiceDescription"
+                  >
+                    {{ d?.invoiceDescription }}
+                  </td>
+                  <!-- <td style="cursor: pointer; word-break: break-word;
+                                    white-space: normal; max-width: 200px;" [title]="d?.invoiceDescription">
+                  
+                                  {{
+                                  d?.invoiceDescription
+                                  ? d?.invoiceDescription?.slice(0, 10) + '...'
+                                  : null
+                                  }}
+                                </td> -->
+                  @if (d?.url) {
+                  <td>
+                    <div class="table-options">
+                      <button
+                        class="btn btn-download"
+                        (click)="downloadFile(d?.url || '')"
+                      >
+                        <img src="images/download-icon.svg" />
+                      </button>
+                    </div>
+                  </td>
+                  }
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="d-flex align-items-center justify-content-between px-3 pb-2">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <a class="page-link"><i class="bi bi-arrow-left me-2"></i>Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item" aria-current="page">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next<i class="bi bi-arrow-right ms-2"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="table-rows-options">
+                            <select class="form-select" aria-label="Default select example">
+                                <option value="6">6</option>
+                                <option value="10" selected>10</option>
+                                <option value="12">12</option>
+                                <option value="24">24</option>
+                            </select> per page
+                        </div>
+                    </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

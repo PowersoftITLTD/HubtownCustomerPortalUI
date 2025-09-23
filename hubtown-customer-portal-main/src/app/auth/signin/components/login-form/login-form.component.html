@@ -1,0 +1,63 @@
+<!-- <div class="form-box">
+    <h2>Log in to your account</h2>
+    <div class="text-gray">Welcome back! Please enter your details.</div>
+  
+    <form>
+      <div class="form-group mb-32">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" [value]="email()" (input)="onEmailChange($event)" placeholder="Enter your email">
+        <div *ngIf="emailError()" class="text-danger">
+          <small>{{ emailError() }}</small>
+        </div>
+      </div>
+  
+      <div class="form-group mb-32">
+        <label class="form-label">Mobile Number</label>
+        <input type="text" class="form-control" [value]="mobileNumber()" (input)="onMobileChange($event)"  placeholder="Enter your mobile number">
+        <div *ngIf="mobileNumberError()" class="text-danger">
+          <small>{{ mobileNumberError() }}</small>
+        </div>
+      </div>
+  
+      <button type="button" class="btn btn-warning" [disabled]="!isFormValid()" (click)="handleSendOtpClick()">Send OTP</button>
+    </form>
+  </div>
+   -->
+
+   <div class="form-box">
+    <h2>Log in to your account</h2>
+    <div class="text-gray">Welcome back! Please enter your details.</div>
+  
+    <form>
+      <!-- Dynamic Email/Mobile Field -->
+      <!-- <div class="form-group mb-32">
+        <label class="form-label">{{value() == '' ? 'Email / Mobile Number' : isEmailInput() ? 'Email' : 'Mobile Number'}}</label>
+        <input [type]="value() == '' ? 'tel' : isEmailInput() ? 'email' : 'tel'" 
+               class="form-control" 
+               [value]="value()" 
+               (input)="onInputChange($event)" 
+               (keyup.enter)="handleEnterSubmit()"
+               placeholder="Enter your {{isEmailInput() ? 'email' : 'mobile Number'}}">
+  
+        <div *ngIf="inputError()" class="text-danger">
+          <small>{{ inputError() }}</small>
+        </div>
+      </div> -->
+      <div class="form-group mb-32">
+        <label class="form-label">{{'Mobile Number'}}</label>
+        <input [type]="'tel'" 
+               class="form-control" 
+               [value]="value()" 
+               (input)="onInputChange($event)" 
+               (keyup.enter)="handleEnterSubmit()"
+               placeholder="Enter your mobile Number">
+  
+        <div *ngIf="inputError()" class="text-danger">
+          <small>{{ inputError() }}</small>
+        </div>
+      </div>
+  
+      <button type="button" class="btn btn-warning" [disabled]="!isFormValid()" (click)="handleSendOtpClick()">Send OTP</button>
+    </form>
+  </div>
+  

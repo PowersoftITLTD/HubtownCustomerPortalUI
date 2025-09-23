@@ -1,0 +1,141 @@
+<!-- Modal -->
+<div
+  class="modal aside-modal"
+  id="milestoneModal"
+  tabindex="-1"
+  aria-labelledby="milestoneModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="HT-title">
+          <img src="images/milestone-icon.svg" />Milestone
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body bg-gray">
+        @if(sortedMileStone && sortedMileStone.length) {
+        <div class="accordion" id="accordionExample">
+          @for(milestone of (sortedMileStone); track $index){
+          <div class="accordion-item {{ milestone?.currentMS }}">
+            <div class="accordion-header" id="heading-{{ $index + 1 }}">
+              <div
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                attr.data-bs-target="#collapse-{{ $index + 1 }}"
+                aria-expanded="true"
+                attr.aria-controls="collapse-{{ $index + 1 }}"
+                [ngClass]="{
+                  'disabled-milestone': !isMilestoneEnabled(milestone)
+                }"
+              >
+                <div class="w-100 pe-4">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-4"
+                  >
+                    <div class="HT-title">
+                      {{ milestone?.mileStoneName }}
+                      @if(milestone?.currentMS == 'P'){
+                      <span class="tag danger ms-3">
+                        <img
+                          src="images/error-icon.svg"
+                          class="me-1"
+                        />Pending</span
+                      >
+                      } @if(milestone?.currentMS == 'C'){
+                      <span class="tag success ms-3"><i></i>Completed</span>
+                      } @if(milestone?.currentMS == 'U'){
+                      <span class="tag warning ms-3"><i></i>Upcoming</span>
+                      }
+                    </div>
+                    <div class="HT-title">
+                      ₹{{ milestone?.amount | number : '1.0-2' }}
+                    </div>
+                  </div>
+                  <div class="row justify-content-between">
+                    <div class="col-auto">
+                      <small class="text-gray">Start Date:</small>
+                      <div class="text-medium mt-2">
+                        {{
+                          milestone?.currentMS == 'C'
+                            ? !milestone?.actualDate ||
+                              milestone?.actualDate?.startsWith('1900')
+                              ? '-'
+                              : (milestone?.actualDate | date)
+                            : '-'
+                        }}
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <small class="text-gray">End Date:</small>
+                      <div class="text-medium mt-2">
+                        {{
+                          milestone?.currentMS == 'C'
+                            ? !milestone?.tentativeDate ||
+                              milestone?.tentativeDate?.startsWith('1900')
+                              ? '-'
+                              : (milestone?.tentativeDate | date)
+                            : '-'
+                        }}
+                      </div>
+                    </div>
+                    <!-- <div class="col-auto">
+                    <small class="text-gray">Payment Due on:</small>
+                    <div class="text-medium mt-2">Aug 15th, 24</div>
+                </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            @if(milestone?.currentMS == 'C'){
+            <div
+              id="collapse-{{ $index + 1 }}"
+              class="accordion-collapse collapse show"
+              attr.aria-labelledby="heading-{{ $index + 1 }}"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="content-table empty">
+                  <div
+                    class="table-head d-flex align-items-center justify-content-between"
+                  >
+                    <div class="font-medium text-bold font-lora">
+                      <div class="download-file-box">
+                        <img src="images/attach-icon.svg" />
+                        <span>Architecture Certificate</span>
+                        @if (milestone?.milestoneDocUrl) {
+
+                        <button
+                          class="btn btn-download ms-3"
+                          (click)="
+                            downloadFile(milestone?.milestoneDocUrl || '')
+                          "
+                        >
+                          <img src="images/download-icon.svg" />
+                        </button>
+                        }
+                      </div>
+                    </div>
+                    <!-- <span class="tag primary">Received</span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+          }
+        </div>
+        } @else {
+        <p>No data available</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

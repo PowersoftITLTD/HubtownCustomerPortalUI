@@ -1,0 +1,51 @@
+<div style="width: 100% !important; max-width: 325px; min-width: 325px">
+  <form [formGroup]="userForm">
+    <!-- User Selection Field -->
+    <div class="form-group mb-8">
+      <div class="userText-field">
+        <label class="form-label">User mobile number</label>
+        <input
+        type="number"
+        class="form-control"
+        formControlName="mobileNumber"
+        placeholder="Enter mobile number"
+        (input)="this.mobileNumberTouched.set(true)"
+        />
+        <div *ngIf="mobileNumberError()" class="text-danger">
+          <small>{{ mobileNumberError() }}</small>
+        </div>
+      </div>
+
+      @if (filteredUsers.length > 1) {
+      <select
+        class="form-control"
+        formControlName="userSelection"
+        (click)="toggleDropdown('user')"
+        (blur)="closeDropdown('user')"
+      >
+        <option value="" disabled>Select user</option>
+        <option *ngFor="let user of filteredUsers" [value]="user?.userId">
+          {{ user?.userName }}
+        </option>
+      </select>
+      <div class="dropdown-img">
+        <img
+          src="images/dropdown-icon.png"
+          alt="dropdown-icon"
+          [class.rotate]="isUserDropdown"
+        />
+      </div>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      (click)="handleUserSubmitClick()"
+      class="btn btn-warning"
+      [disabled]="!isFormValid()"
+    >
+      {{ !isLoading ? 'Submit' : 'Loading...' }}
+    </button>
+  </form>
+</div>

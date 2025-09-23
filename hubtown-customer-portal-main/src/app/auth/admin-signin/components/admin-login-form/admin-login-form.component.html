@@ -1,0 +1,48 @@
+<div class="form-box">
+    <h2>Log in to your account</h2>
+    <div class="text-gray">Welcome back! Please enter your details.</div>
+  
+    <form>
+      <!-- Email Field -->
+      <div class="form-group mb-32">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          [value]="email()"
+          (input)="onEmailChange($event)"
+          placeholder="Enter your email"
+        />
+  
+        <div *ngIf="emailError()" class="text-danger">
+          <small>{{ emailError() }}</small>
+        </div>
+      </div>
+  
+      <!-- Password Field -->
+      <div class="form-group mb-32">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          [value]="password()"
+          (input)="onPasswordChange($event)"
+          placeholder="Enter your password"
+        />
+  
+        <div *ngIf="passwordError()" class="text-danger">
+          <small>{{ passwordError() }}</small>
+        </div>
+      </div>
+  
+      <button
+        type="button"
+        class="btn btn-warning"
+        [disabled]="!isFormValid()"
+        (click)="handleSendOtpClick()"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  

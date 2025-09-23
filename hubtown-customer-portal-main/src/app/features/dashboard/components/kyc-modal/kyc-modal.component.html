@@ -1,0 +1,150 @@
+<!-- Modal -->
+<div
+  class="modal aside-modal"
+  id="kycModal"
+  tabindex="-1"
+  aria-labelledby="kycModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="HT-title">
+          <img src="images/upload-icon.svg" />KYC Details
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        @if(groupedItems && groupedItems.length) { @for(group of groupedItems;
+        track $index){
+        <div class="mb-32">
+          <div class="text-bold font-big font-lora mb-3">
+            {{ group?.ownerName }}
+          </div>
+          <div class="table-box-bordered">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Document Name</th>
+                    <th>Date</th>
+                    <!-- <th>Document</th> -->
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(item of group.items;track $index){
+                  <tr>
+                    <td>
+                      <span class="text-gray">{{ item?.documentName }}</span>
+                    </td>
+                    <td>
+                    {{!item?.createdAt || item?.createdAt?.startsWith('1900') ? "-": (item?.createdAt | date)}} 
+                    </td>
+                    <!-- <td>
+                      <div
+                        class="download-file-box big-box p-0 border-0 justify-content-start"
+                      >
+                        <img src="images/attach-icon.svg" />
+                        <span class="pe-2">{{ item?.documentFile }}</span>
+                      </div>
+                    </td> -->
+                    <td>
+                      <div class="table-options d-flex">
+                        @if (item?.documentFile) {
+
+                        <button
+                          class="btn btn-download"
+                          (click)="downloadFile(item?.documentFile || '')"
+                        >
+                          <img src="images/download-icon.svg" />
+                        </button>
+                        }
+                        <!-- <button class="btn btn-gray"
+                                                            (click)="deleteKyc(item?.kycId ||'',group?.ownerName || '')"><i
+                                                                class="bi bi-trash"></i></button> -->
+                        <!-- <button class="btn btn-gray d-none"><i
+                                                                class="bi bi-pencil"></i></button> -->
+                        <button class="btn btn-black d-none">
+                          <i class="bi bi-check2"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  } @if(group?.isAddNew == 1){
+                  <tr class="">
+                    <td>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Document Name"
+                        #inputRef
+                        (input)="onInput(inputRef.value)"
+                      />
+                    </td>
+                    <td>
+                      {{ (!today || "1900-01-01 00:00:00.000" ? '–' : (today | date))}} 
+                    </td>
+                    <td>
+                      <div class="upload-doc-box" (click)="fileInput.click()">
+                        <input
+                          type="file"
+                          #fileInput
+                          style="display: none"
+                          (change)="onFileSelected($event)"
+                        />
+                        <i class="bi bi-upload"></i>
+                        Upload Document
+                      </div>
+                      <br />
+                      <span class="pe-2">{{ uploadedFile?.name }}</span>
+                    </td>
+                    <td>
+                      <div class="table-options">
+                        <!-- <button class="btn btn-gray"
+                                                            (click)="deleteKyc('',group?.ownerName || '')"><i
+                                                                class="bi bi-trash"></i></button> -->
+                        <!-- <button class="btn btn-gray"><i class="bi bi-pencil"></i></button> -->
+                        <button
+                          class="btn btn-black"
+                          (click)="uploadKyc(group?.ownerName || '')"
+                        >
+                          <i class="bi bi-check2"></i>
+                        </button>
+                        <button
+                          class="btn btn-black"
+                          (click)="cancelAddNow(group?.ownerName || '')"
+                        >
+                          X
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+            @if(group?.isAddNew == 0){
+            <div class="px-3 pb-2">
+              <!-- <button
+                class="btn btn-black text-medium"
+                (click)="addNew(group?.ownerName || '')"
+              >
+                Add New
+              </button> -->
+            </div>
+            }
+          </div>
+        </div>
+        } } @else {
+        <p>No data available</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

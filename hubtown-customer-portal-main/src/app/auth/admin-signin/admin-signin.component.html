@@ -1,0 +1,18 @@
+<!-- start section login -->
+<section class="HT-login">
+  <app-toast></app-toast>
+  <div class="row g-0">
+    <div class="col-md-6">
+      <div class="page-bg" style="background: url('images/login.svg')"></div>
+    </div>
+    <div class="col-md-6 col-12 right-side w-full">
+      @if(!showUserDropdown) {
+      <app-admin-login-form
+        (formDataChange)="handleSendOtpClick($event)"
+      ></app-admin-login-form>
+      } @else {
+      <app-user-selection-form></app-user-selection-form>
+      }
+    </div>
+  </div>
+</section>

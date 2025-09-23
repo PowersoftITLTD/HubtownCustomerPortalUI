@@ -1,0 +1,66 @@
+.project-img-box {
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+.project-img-box img {
+    border-radius: 8px;
+}
+.project-img-box .hover-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.27);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+.project-img-box .hover-btn span {
+    display: block;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(2px);
+    border-radius: 31px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #fff;
+}
+.project-img-box:hover .hover-btn {
+    opacity: 1;
+}
+
+.project-img {
+    width: 229px;
+    height: 229px;
+    object-fit: contain;
+    border-radius: 8px;
+    position: relative;
+}
+.project-img::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180.59deg, rgba(0, 0, 0, 0) 0.51%, rgba(0, 0, 0, 0.32) 90.87%);
+    border-radius: 8px;
+}
+
+.card-shado{
+    border: 1px solid #e7e7e7;
+    border-radius: 9px;
+    padding: 20px 20px;
+    box-shadow: 0px 0px 6px #d4d4d4;
+    transition: all 0.1s ease-in-out;
+}
+.card-shado:hover{
+    transform: translateY(-3px);
+}

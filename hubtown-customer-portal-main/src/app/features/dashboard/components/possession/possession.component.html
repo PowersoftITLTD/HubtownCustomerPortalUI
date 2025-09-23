@@ -1,0 +1,176 @@
+<!-- Registration Details -->
+<div class="row gx-3">
+  <div class="col-md-6 col-12 mb-3">
+    <div class="HT-details-card">
+      <div class="HT-card-head">
+        <div class="HT-title">
+          <div>
+            <img src="images/register-icon.svg" />
+            <span class="dark-text">Registration Details</span>
+          </div>
+        </div>
+      </div>
+
+      @if(registrationNo){
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-around mt-4 mb-3">
+          <div>
+            <span class="text-gray d-block">Registration Number</span>
+            <span class="text-meduim font-meduim">{{
+              registrationNo || '–'
+            }}</span>
+          </div>
+          <div>
+            <span class="text-gray d-block">Actual Date</span>
+            <span class="text-meduim font-meduim">
+              {{
+                !this.actualDate || this.actualDate.startsWith('1900')
+                  ? '-'
+                  : (actualDate | date)
+              }}
+            </span>
+          </div>
+
+          @if (registrationDocumentUrl) {
+          <div class="button-container">
+            <button
+              class="btn btn-download"
+              (click)="downloadFile(registrationDocumentUrl || '')"
+              [disabled]="!registrationDocumentUrl"
+              [class.show-error]="!registrationDocumentUrl"
+            >
+              <img src="images/download-icon.svg" alt="Download" />
+            </button>
+
+            <!-- Error message -->
+            <p *ngIf="!registrationDocumentUrl" class="error-tooltip">
+              Registration unavailable
+            </p>
+          </div>
+          }
+        </div>
+      </div>
+      } @else if(!registrationNo){
+      <div style="margin-left: 21px; padding: 10px">
+        No registration details available
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Possession Details -->
+  <div class="col-md-6 col-12 mb-3">
+    @if(!fitoutDate && !possesionDate){ } @else {
+    <div class="HT-details-card">
+      <div class="HT-card-head">
+        <div class="HT-title">
+          <div>
+            <img src="images/possession-icon.svg" />
+            <span class="dark-text">Possession Details</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="row bordered">
+          <div class="d-flex align-items-center justify-content-between">
+            @if(!fitoutDate && !possesionDate){
+            <div style="margin-left: 21px; padding: 10px">
+              No possession details available.
+            </div>
+            } @if(fitoutDate){
+            <div>
+              <span class="text-gray d-block">Fitout Date:</span>
+              <span class="text-meduim font-meduim">
+                {{
+                  !this.fitoutDate || this.fitoutDate.startsWith('1900')
+                    ? '-'
+                    : (fitoutDate | date)
+                }}
+              </span>
+            </div>
+            <button class="btn btn-download">
+              <img src="images/download-icon.svg" />
+            </button>
+            }
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="d-flex align-items-center justify-content-between">
+              @if(possesionDate){
+              <div>
+                <span class="text-gray d-block">Possession Final Date</span>
+                <span class="text-meduim font-meduim">
+                  {{
+                    !this.possesionDate || this.possesionDate.startsWith('1900')
+                      ? '-'
+                      : (possesionDate | date)
+                  }}
+                </span>
+              </div>
+              <div class="button-container">
+                @if (possessionDocumentUrl) {
+                <button
+                  class="btn btn-download"
+                  (click)="downloadFile(possessionDocumentUrl || '')"
+                  [disabled]="!possessionDocumentUrl"
+                  [class.show-error]="!possessionDocumentUrl"
+                >
+                  <img src="images/download-icon.svg" />
+                </button>
+                }
+                <!-- Error message -->
+                <p *ngIf="!possessionDocumentUrl" class="error-tooltip">
+                  Possession unavailable
+                </p>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="row gx-3">
+    <div class="col-md-6 col-12 mb-3">
+      <div class="HT-details-card">
+        <div class="HT-card-head">
+          <div class="HT-title">
+            <div>
+              <img src="images/home-icon.svg" />
+              <span class="dark-text">Home Loan NOC</span>
+            </div>
+          </div>
+          <button
+            class="btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#nocModal"
+          >
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 mb-3">
+      <div class="HT-details-card">
+        <div class="HT-card-head">
+          <div class="HT-title">
+            <div>
+              <img src="images/tds-icon.svg" />
+              <span class="dark-text">TDS</span>
+            </div>
+          </div>
+          <button
+            class="btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#tdsModal"
+          >
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

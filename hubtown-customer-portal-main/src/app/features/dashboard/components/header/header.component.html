@@ -1,0 +1,185 @@
+<!-- start dashboard nav -->
+<nav class="dashboard-nav">
+  <div class="container">
+    <a href="#"><img src="images/logo.svg" /></a>
+    <div class="navbar-items">
+      <!-- <form>
+        <div>
+          <input type="search" class="form-control" placeholder="Search" />
+        </div>
+      </form> -->
+      @if (isDropdownVisible) {
+      <div class="dropdown-container">
+        <form [formGroup]="userForm" class="form">
+          <div class="form-group dropdown-wrapper mb-8">
+            <select
+              class="form-control-dropdown"
+              formControlName="userSelection"
+              (click)="toggleDropdown('user')"
+              (blur)="closeDropdown('user')"
+              (change)="handleUserSubmitClick()"
+            >
+              <option value="" disabled>Select user</option>
+              <option *ngFor="let user of users" [value]="user?.userId">
+                {{ user?.userName }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+      }
+
+      <div class="dropdown build-dropdown">
+        <button
+          class="btn btn-white dropdown-toggle"
+          [ngClass]="{ removeDropArrow: projects && projects.length <= 1 }"
+          style="opacity: 1"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          [disabled]="projects && projects.length == 1"
+        >
+          <span class="option">
+            <!-- <img [src]="selectedProject?.projectLogoUrl" width="40px"/> -->
+            <ngx-avatars
+              [name]="selectedProject?.projectName"
+              class="project-image"
+              [src]="selectedProject?.projectLogoUrl"
+              [round]="true"
+              [size]="30"
+            >
+            </ngx-avatars>
+            <span class="ms-2">
+              {{
+                selectedProject?.booking?.building +
+                  ' | ' +
+                  selectedProject?.booking?.unit
+              }}
+            </span>
+          </span>
+        </button>
+        <ul class="dropdown-menu w-100">
+          @for (project of projects; track $index) {
+          <li>
+            <a
+              class="dropdown-item cursor-pointer"
+              [ngClass]="{
+                active:
+                  project?.booking?.bookingID ==
+                  selectedProject?.booking?.bookingID
+              }"
+              (click)="onProjectChange(project)"
+              ><span class="option">
+                <!-- <img [src]="project?.projectLogoUrl" />{{
+                  project?.projectName
+                }} -->
+                <ngx-avatars
+                  [name]="project?.projectName"
+                  [src]="project?.projectLogoUrl"
+                  [round]="true"
+                  [size]="24"
+                >
+                </ngx-avatars>
+                <span class="ms-2">
+                  {{
+                    project?.booking?.building + ' | ' + project?.booking?.unit
+                  }}
+                </span>
+
+                <!-- <span class="ms-2">
+                  {{
+                  project?.projectName + ' | ' + project?.booking?.building + ' | ' + project?.booking?.unit
+                  }}
+                </span> -->
+              </span></a
+            >
+          </li>
+          }
+        </ul>
+      </div>
+      <div class="dropdown notifications">
+        <!-- <i class="bi bi-bell" data-bs-toggle="dropdown" aria-expanded="false"></i> -->
+        <div
+          class="notification-wrapper position-relative"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          (click)="markNotificationsAsRead()"
+        >
+          <i class="bi bi-bell"></i>
+          @if(hasUnreadNotifications() && (notification$ | async)?.length) {
+          <span class="red-dot position-absolute"></span>
+          }
+        </div>
+
+        <!-- Notifications -->
+        <div class="notifications-container dropdown-menu">
+          <div class="notifications-header">
+            <h3>Notifications</h3>
+            <button class="close-btn"><i class="bi bi-x"></i></button>
+          </div>
+          @for(notification of (notification$|async)?.slice(0, 3); track
+          $index){
+          <div class="notification-item">
+            <div class="icon">
+              <i class="bi bi-envelope"></i>
+            </div>
+            <div class="content">
+              <p class="title">{{ notification?.notificationPayload }}</p>
+              <p class="timestamp">
+                {{(!notification?.createdAt || "1900-01-01 00:00:00.000" ? '–' : (notification?.createdAt | date))}} 
+              </p>
+            </div>
+            <!-- <div class="options">
+              <button class="options-btn">...</button>
+            </div> -->
+          </div>
+          } @if (!(notification$|async)?.length) {
+          <div class="notification-item">
+            <!-- <div class="icon">
+                <i class="bi bi-envelope"></i>
+              </div> -->
+            <div class="content">
+              <p class="title">Notifications not available.</p>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      <div class="dropdown user-dropdown">
+        <button
+          class="btn btn-white dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <ngx-avatars
+            [name]="user?.name"
+            [round]="true"
+            [size]="30"
+            class="me-2"
+          >
+          </ngx-avatars>
+        </button>
+        <div class="profile-card dropdown-menu">
+          <h2 class="profile-name">{{ user?.name }}</h2>
+          <div class="profile-info">
+            <div class="profile-email">
+              <i class="bi bi-envelope me-2"></i>
+              <span>{{ user?.email }}</span>
+            </div>
+            <div class="profile-phone">
+              <i class="bi bi-telephone-plus"></i>
+              <span>{{ user?.mobile }}</span>
+            </div>
+          </div>
+          <hr class="divider" />
+          <div class="logout">
+            <a href="javascript:void(0)" (click)="handleLogoutClick()"
+              ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

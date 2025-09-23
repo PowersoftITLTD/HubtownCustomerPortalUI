@@ -1,0 +1,206 @@
+<!-- Modal -->
+<div
+  class="modal aside-modal"
+  id="tdsModal"
+  tabindex="-1"
+  aria-labelledby="tdsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <div class="HT-title"><img src="images/tds-icon.svg" />TDS</div>
+          @if(!showUploadTds) {
+          <!-- <button class="btn btn-warning" (click)="handleUploadTdsClick()">
+            <img src="images/download-icon.svg" class="me-2" />Upload TDS
+          </button> -->
+          }
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      @if(!showUploadTds) {
+      <div class="modal-body">
+        <div class="table-box-bordered">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Sr. No.</th>
+                  <th>Date</th>
+                  <th>Transaction No.</th>
+                  <th>Amount</th>
+                  <th></th>
+                </tr>
+              </thead>
+              @if(tdsData.length > 0) {
+
+              <tbody>
+                @if(tds$ | async) { @for(tds of (tds$ | async); track $index){
+                <tr>
+                  <td>{{ $index + 1 }}</td>
+                  <td>{{ !tds?.tdsDate || tds?.tdsDate?.startsWith('1900')? '-': (tds?.tdsDate | date)}}</td>
+                  <td>{{ tds?.transactionNo }}</td>
+                  <td>{{ formatToINRCurrency(tds?.tdsAmount) }}</td>
+                  <td>
+                    <div class="table-options">
+                      <button
+                        class="btn btn-download"
+                        (click)="downloadTDS(tds?.tdsFile || '')"
+                      >
+                        <!-- <i class="bi bi-download"></i> -->
+                        <img src="images/download-icon.svg" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                } } @else {
+                <tr>
+                  <td colspan="5" class="text-center">No data available</td>
+                </tr>
+                }
+              </tbody>
+              } @else {
+              <tr>
+                <td colspan="5" class="text-center">No tds data available</td>
+              </tr>
+              }
+            </table>
+          </div>
+          <!-- <div class="d-flex align-items-center justify-content-between px-3 pb-2">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link"><i class="bi bi-arrow-left me-2"></i>Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next<i class="bi bi-arrow-right ms-2"></i></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="table-rows-options">
+                <select class="form-select" aria-label="Default select example">
+                    <option value="6">6</option>
+                    <option value="10" selected>10</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                </select> per page
+            </div>
+        </div> -->
+        </div>
+      </div>
+      } @else {
+      <div class="modal-body">
+        <form [formGroup]="uploadTdsForm" class="row g-3">
+          <div class="col-md-12">
+            <label for="TDSDate" class="form-label">Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="TDSDate"
+              formControlName="TDSDate"
+            />
+            <div
+              *ngIf="
+                uploadTdsForm.get('TDSDate')?.touched &&
+                uploadTdsForm.get('TDSDate')?.invalid
+              "
+              class="text-danger"
+            >
+              Date is required
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label for="TransactionNo" class="form-label"
+              >Transaction Number</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="TransactionNo"
+              formControlName="TransactionNo"
+            />
+            <div
+              *ngIf="
+                uploadTdsForm.get('TransactionNo')?.touched &&
+                uploadTdsForm.get('TransactionNo')?.invalid
+              "
+              class="text-danger"
+            >
+              Transaction number is required and must be a valid number.
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <label for="TDSAmount" class="form-label">Amount</label>
+            <input
+              type="text"
+              class="form-control"
+              id="TDSAmount"
+              formControlName="TDSAmount"
+            />
+            <div
+              *ngIf="
+                uploadTdsForm.get('TDSAmount')?.touched &&
+                uploadTdsForm.get('TDSAmount')?.invalid
+              "
+              class="text-danger"
+            >
+              Amount is required and must be a valid number.
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <input
+              type="file"
+              class="form-control"
+              formControlName="file"
+              aria-label="file example"
+              (change)="handleFileChange($event)"
+            />
+            <div
+              *ngIf="
+                uploadTdsForm.get('file')?.touched &&
+                uploadTdsForm.get('file')?.invalid
+              "
+              class="text-danger"
+            >
+              File is required
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer px-4">
+        <button
+          type="button"
+          class="btn btn-black"
+          (click)="showUploadTds = false"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          [disabled]="uploadTdsForm.invalid"
+          (click)="handleSubmit()"
+        >
+          Upload
+        </button>
+      </div>
+      }
+    </div>
+  </div>
+</div>

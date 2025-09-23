@@ -1,0 +1,13 @@
+<div class="HT-blocks-nav">
+    <ul>
+        <li [class.active]="activeSection === 'book-details'" (click)="scrollTo('book-details')">Booking Details</li>
+        <!-- <li [class.active]="activeSection === 'milestone'" (click)="scrollTo('milestone')">Milestone</li> -->
+        <li [class.active]="activeSection === 'payment-schedule'" (click)="scrollTo('payment-schedule')">Payment Schedule</li>
+        <li [class.active]="activeSection === 'dl-receipts'" (click)="scrollTo('dl-receipts')">DL & Receipts</li>
+        <li [class.active]="activeSection === 'possession-details'" (click)="scrollTo('possession-details')">Possession Details</li>
+        <li [class.active]="activeSection === 'project-updates'" (click)="scrollTo('project-updates')">Project Updates</li>
+        <li [class.active]="activeSection === 'upcoming-projects'" (click)="scrollTo('upcoming-projects')">Upcoming Projects</li>
+        <li [class.active]="activeSection === 'faqs'" (click)="scrollTo('faqs')">FAQs</li>
+    </ul>
+</div>
+

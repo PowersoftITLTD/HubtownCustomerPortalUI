@@ -1,0 +1,6 @@
+.disabled-milestone {
+  opacity: 0.2; /* Makes the element look faded */
+  pointer-events: none; /* Prevents interaction */
+  cursor: not-allowed; /* Changes the cursor to indicate it can't be clicked */
+}
+

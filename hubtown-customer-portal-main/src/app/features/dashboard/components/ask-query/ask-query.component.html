@@ -1,0 +1,198 @@
+<div class="ask-query-btn" style="display: flex;">
+  <button
+    type="button"
+    class="btn btn-black"
+    style="margin-right: 10px;"
+    (click)="handleFeedbackNavigation()"
+  >
+    <img src="images/chat-icon.svg" style="height:30px; width:30px;" class="me-2" />Feedback
+  </button>
+  <!-- <button
+    type="button"
+    class="btn btn-black"
+    data-bs-toggle="modal"
+    data-bs-target="#queryModal"
+  >
+    <img src="images/chat-icon.svg" class="me-2" />Ask Query
+  </button> -->
+</div>
+
+<app-toast></app-toast>
+<!-- Modal -->
+<div
+  class="modal aside-modal"
+  id="queryModal"
+  tabindex="-1"
+  aria-labelledby="queryModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="HT-title"><img src="images/faq-icon.svg" />Ask Query</div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <small class="d-block mb-3"
+          >Your Relationship Manager will be replying to you</small
+        >
+        <div class="HT-gray-card h-auto p-4 mb-4">
+          <div class="font-medium text-bold mb-12">
+            <img src="images/icon2.svg" class="me-2" />Relationship Manager
+          </div>
+          <!-- <div class="manager-info justify-content-start">
+            <div class="manager-img"></div>
+            <div class="ps-4">
+              <div class="name">Aneesh Vishwakarma</div>
+              <div class="contact-info">
+                <span
+                  ><i class="bi bi-envelope me-2"></i
+                  >john.doe&#64;example.com</span
+                >
+                <span
+                  ><i class="bi bi-telephone-plus me-2"></i>+91 98765
+                  43210</span
+                >
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-lg-7 col-12">
+            <div class="manager-info">
+              <!-- <div class="manager-img"></div> -->
+              <ngx-avatars
+                [name]="(bookings$ | async)?.[0]?.rmName"
+                [round]="true"
+                [size]="40"
+              >
+              </ngx-avatars>
+              <div class="ps-4">
+                <div class="name">{{ (bookings$ | async)?.[0]?.rmName }}</div>
+                <div class="contact-info">
+                  <span
+                    ><i class="bi bi-envelope me-2"></i
+                    >{{ (bookings$ | async)?.[0]?.rmEmail
+                    }}</span
+                  >
+                  <span
+                    ><i class="bi bi-telephone-plus me-2"></i
+                    >{{ (bookings$ |
+                            async)?.[0]?.rmContact }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form [formGroup]="queryForm" (ngSubmit)="handleSubmit()">
+          <!-- Information field -->
+          <div class="form-group mb-2 position-relative">
+            <label class="form-label">Information Required</label>
+            <select
+              class="form-control"
+              formControlName="informationRequired"
+              (click)="toggleDropdown('info')"
+              (blur)="closeDropdown('info')"
+              aria-placeholder="Select a information"
+            >
+              <option value="">Select a information</option>
+              <option
+                *ngFor="let option of feedbackInfo"
+                [value]="option?.infId"
+              >
+                {{ option?.infDesc }}
+              </option>
+            </select>
+            <div class="dropdown-img">
+              <img
+                src="images/dropdown-icon.png"
+                alt="dropdown-icon"
+                [class.rotate]="isInfoDropdown"
+              />
+            </div>
+            <small
+              *ngIf="queryForm.get('informationRequired')?.hasError('required')"
+              style="color: red"
+              >Information is required.</small
+            >
+          </div>
+
+          <!--Query message -->
+          <div class="form-group mb-2">
+            <label class="form-label">Write Your Query</label>
+            <textarea
+              class="form-control"
+              placeholder="Write here"
+              formControlName="message"
+            ></textarea>
+            <small
+              *ngIf="queryForm.get('message')?.hasError('required')"
+              style="color: red"
+              >Message is required.</small
+            >
+            <small
+              *ngIf="queryForm.get('message')?.hasError('minlength')"
+              style="color: red"
+              >Message must be at least 10 characters long.</small
+            >
+          </div>
+
+          <!-- Submit Query Button -->
+          <button
+            type="submit"
+            class="btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#confirmationModal"
+            [disabled]="isLoading"
+          >
+            {{ isLoading ? 'Sending' : 'Send Query' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- warning modal -->
+<div class="warning-modal d-none">
+  <button class="btn-close"></button>
+</div>
+
+<div
+  *ngIf="isSuccess"
+  class="modal fade"
+  id="confirmationModal"
+  aria-hidden="true"
+  aria-labelledby="confirmationModalLabel"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- <div class="modal-header"> -->
+
+      <!-- </div> -->
+      <div class="modal-body">
+        <!-- <div class="w-100"> -->
+        <button
+          type="button"
+          class="btn-close float-end"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+        <!-- </div> -->
+
+        <div class="text-center">
+          <div class="check"></div>
+          <h2>Query sent successfully</h2>
+          <p>You will receive a reply over your mail</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

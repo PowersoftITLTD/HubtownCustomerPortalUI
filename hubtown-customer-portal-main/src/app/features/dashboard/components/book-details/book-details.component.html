@@ -1,0 +1,193 @@
+<div class="row gx-3">
+  <div class="col-md-6 col-12 mb-3">
+    <div class="HT-details-card">
+      <div class="HT-card-head">
+        <div class="HT-title">
+          <img src="images/breakup-icon.svg" />
+          <span class="dark-text">Sale Value Breakup</span>
+        </div>
+      </div>
+      @if(demandBreakup$ | async){
+      <div class="card-body">
+        <div class="row bordered">
+          <div class="col-sm-6 col-12 border-sm-end">
+            <small class="text-gray mb-2">{{
+              (demandBreakup$ | async)?.groupA_Caption
+            }}</small>
+            <div class="text-medium">
+              {{
+                formatToINRCurrency(
+                  (demandBreakup$ | async)?.flatConsiderationAmt
+                )
+              }}
+            </div>
+          </div>
+          <div class="col-sm-6 col-12">
+            <small class="text-gray mb-2">{{
+              (demandBreakup$ | async)?.groupB_Caption
+            }}</small>
+            <div class="text-medium">
+              {{
+                formatToINRCurrency((demandBreakup$ | async)?.societyCharges)
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="row bordered">
+          <div class="col-sm-6 col-12 border-sm-end">
+            <small class="text-gray mb-2">{{
+              (demandBreakup$ | async)?.groupC_Caption
+            }}</small>
+            <div class="text-medium">
+              {{ formatToINRCurrency((demandBreakup$ | async)?.society) }}
+            </div>
+          </div>
+          <div class="col-sm-6 col-12">
+            <small class="text-gray mb-2">{{
+              (demandBreakup$ | async)?.groupD_Caption
+            }}</small>
+            <div class="text-medium">
+              {{
+                formatToINRCurrency(
+                  (demandBreakup$ | async)?.statutoryRequirements
+                )
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Total Tax code -->
+      <!-- <div class="HT-card-footer">
+                <small class="text-gray">Total (w/o Tax)</small>
+                <span class="text-medium">{{formatToINRCurrency((demandBreakup$ | async)?.totalWoTax)}}</span>
+            </div> -->
+      }@else {
+      <p style="margin-left: 21px; padding: 10px">
+        No sale value breakup data available.
+      </p>
+      }
+    </div>
+  </div>
+  <div class="col-md-6 col-12 mb-3">
+    <div class="HT-details-card">
+      <div class="HT-card-head">
+        <div class="HT-title">
+          <img src="images/schedule-icon.svg" />
+          <span class="dark-text">Payment Schedule</span>
+        </div>
+
+        <button
+          class="btn btn-warning"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#paymentSchModal"
+          (click)="setPaymentS()"
+        >
+          View Details
+        </button>
+      </div>
+      <div class="card-body p-4">
+        <div
+          class="d-flex align-items-start justify-content-between mb-3"
+          *ngIf="milestone$ | async as milestone"
+        >
+          <div
+            class="HT-title text-medium"
+            style="font-size: 18px; line-height: 1.2"
+          >
+            {{ milestoneItem?.mileStoneName }}
+          </div>
+          <span class="tag warning" style="white-space: nowrap"
+            ><i></i>Upcoming Milestone</span
+          >
+        </div>
+        <div
+          class="row justify-content-between mb-4"
+          *ngIf="milestone$ | async as milestone"
+        >
+          <div class="col-auto">
+            <small class="text-gray me-2">Scheduled Amt:</small>
+            <span class="text-medium">{{
+              formatToINRCurrency(milestoneItem?.amount)
+            }}</span>
+          </div>
+          <!-- <div class="col-auto">
+                        <small class="text-gray me-2">Flat Consideration:</small>
+                        <span class="text-medium">{{formatToINRCurrency(milestoneItem?.flatConsiderationamount) }}</span>
+                    </div> -->
+          <!-- <div class="col-auto">
+                        <small class="text-gray me-2">Tentative Start Date:</small>
+                        <span class="text-medium">{{milestoneItem?.tentativeDate | date}}</span>
+                    </div> -->
+        </div>
+        <!--<div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example"
+                            style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>-->
+        <!-- <div class="range-slider">
+                    <input type="range" class="custom-range">
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="payment paid">
+                        <span>Paid</span>
+                        ₹16 lac
+                    </div>
+                    <div class="payment total">
+                        <span>Pending</span>
+                        ₹2.4 Cr
+                    </div>
+                </div> -->
+        <!-- <div class="range-slider">
+                    <input id="scheduledAmountRange" type="range" class="custom-range" min="0" max="100" [value]="paidPercentage"
+                        (input)="onRangeChange($event)" disabled>
+                </div> -->
+        <div class="range-slider-container">
+          <!-- <input 
+                      id="scheduledAmountRange" 
+                      type="range" 
+                      class="custom-range" 
+                      min="0" 
+                      max="100" 
+                      [value]="paidPercentage1"
+                      (input)="onRangeChange($event)" 
+                      [disabled]="isDisabled"
+                    > -->
+          <div class="current-range">
+            <!-- <div [style.width.%]="lastPaidMSPercentage"></div> -->
+            <div [style.width.%]="lastPaidMSPercentage"></div>
+          </div>
+          <div class="range-dots">
+            <div
+              class="dot"
+              *ngFor="let dot of dotsArray"
+              [style.left.%]="dot.dotPercent"
+              [title]="dot.amount"
+            >
+              <span
+                [ngClass]="{
+                  'active-dot': lastPaidMSPercentage == dot.dotPercent
+                }"
+              ></span>
+              <span class="dot-tooltip">
+                <div>{{ dot.mileStoneName }}</div>
+                <div>{{ formatToINRCurrency(dot.amount) }}</div>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <div class="payment paid">
+            <span>Paid</span>
+            {{ formatToINRCurrency(paidAmount) }}
+          </div>
+          <div class="payment total">
+            <span>Pending</span>
+            {{ formatToINRCurrency(pendingAmount) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

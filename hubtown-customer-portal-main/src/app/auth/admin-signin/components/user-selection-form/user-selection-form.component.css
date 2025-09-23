@@ -1,0 +1,76 @@
+.form-box {
+  width: 100%;
+}
+
+.right-side {
+  padding: 0;
+}
+
+form {
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.form-control {
+  /* height: 45px; */
+  padding: 10px;
+  font-size: 14px;
+}
+
+.userText-field {
+  margin-bottom: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.btn {
+  font-size: 18px;
+  padding: 12px;
+}
+
+.message {
+  font-weight: 600;
+  font-size: 20px;
+}
+.back-btn {
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 9px;
+}
+
+/* For Chrome, Safari, Edge, Opera */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type='number'] {
+  appearance: textfield;
+}
+
+.dropdown-img img {
+  position: absolute;
+  right: 10px;
+  top: 85%;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+.dropdown-img img.rotate {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.timer-container {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+}

@@ -1,0 +1,32 @@
+<div class="form-box">
+  <h2>Log in to your account</h2>
+  <div class="text-gray">Welcome back! Please enter your details.</div>
+
+  <form>
+    <!-- Dynamic Email/Mobile Field -->
+    <div class="form-group mb-32">
+      <div *ngIf="isLoading" class="text-center d-flex flex-column align-items-center">
+        <div class="spinner-border text-primary" role="status"></div>
+      </div>
+      <label class="form-label">{{
+        value() == ''
+        ? 'Email / Mobile Number'
+        : isEmailInput()
+        ? 'Email'
+        : 'Mobile Number'
+        }}</label>
+
+      <input [type]="value() == '' ? 'tel' : isEmailInput() ? 'email' : 'tel'" class="form-control" [value]="value()"
+        (input)="onInputChange($event)" placeholder="Enter your {{
+          isEmailInput() ? 'email' : 'mobile Number'
+        }}" (keydown.enter)="onEnterPress($event)" />
+
+      <div *ngIf="inputError()" class="text-danger">
+        <small>{{ inputError() }}</small>
+      </div>
+    </div>
+    <button type="button" class="btn btn-warning" [disabled]="!isFormValid()" (click)="handleSendOtpClick()">
+      {{ isLoading ? 'Sending' : 'Send OTP' }}
+    </button>
+  </form>
+</div>

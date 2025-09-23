@@ -1,0 +1,330 @@
+<div class="container">
+  <div class="project-card mb-4">
+    <div class="HT-card-head mb-4">
+      <div class="HT-title">
+        <img src="images/project-icon.svg" />Project Details
+      </div>
+      @if(selectedProject?.rerano){
+      <div class="extra-info">
+        RERA No.
+        <a [href]="selectedProject?.reraLink" target="_blank"
+          ><span class="text-medium me-2">{{ selectedProject?.rerano }}</span>
+        </a>
+        @if(selectedProject?.reraLink){
+        <button
+          class="btn btn-download"
+          (click)="downloadFile(selectedProject?.reraDocument || '')"
+        >
+          <img src="images/download-icon.svg" />
+        </button>
+        }
+      </div>
+      }
+    </div>
+    <div class="card-body">
+      <div class="row align-items-lg-center">
+        <div class="col-md-auto col-12 mb-4 mb-md-0">
+          <div
+            class="project-img-box h-100"
+            data-bs-toggle="modal"
+            data-bs-target="#sliderModal"
+          >
+            <img
+              [src]="selectedProject?.listProjectImages?.[0]?.imageUrl"
+              #projectImage
+              (error)="projectImage.src = 'images/project-icon.svg'"
+              class="project-img h-100"
+            />
+            <div class="hover-btn">
+              <span>View Images</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md col-12">
+          <div class="card-inner-head d-flex flex-row flex-wrap">
+            <div class="d-flex align-items-center mb-3">
+              <h3 class="me-4 mb-0">{{ selectedProject?.projectName }}</h3>
+              <span class="tag warning" style="white-space: nowrap"
+                ><i class="bi bi-dot"></i>
+                {{ selectedProject?.booking?.status }}</span
+              >
+              @if(selectedProject?.websiteLink){
+              <div title="Visit Website">
+                <a
+                  [href]="'https://' + selectedProject?.websiteLink"
+                  target="_blank"
+                  class="pointer"
+                >
+                  <img
+                    width="20px"
+                    style="margin-left: 16px"
+                    src="images/external-link.svg"
+                  />
+                </a>
+              </div>
+              }
+            </div>
+            <div style="display: flex; gap: 12px">
+              <!-- @if(selectedProject?.booking?.ocDate){ -->
+              <div
+                class="fs-8 px-3 mb-3 rounded-pill"
+                style="background-color: #f1f1f1 !important"
+              >
+                <span>OC Date.</span>
+                <span class="tag fs-8">
+                  {{
+                    !selectedProject?.booking?.ocDate ||
+                    selectedProject?.booking?.ocDate?.startsWith('1900')
+                      ? '-'
+                      : (selectedProject?.booking?.ocDate | date : 'MMM d, y')
+                  }}
+                </span>
+              </div>
+              <!-- } @if(selectedProject?.booking?.ocNo){ -->
+              <div
+                class="fs-8 px-3 mb-3 rounded-pill"
+                style="background-color: #f1f1f1 !important"
+              >
+                <span>OC No.</span>
+                <span class="tag fs-8">
+                  {{ selectedProject?.booking?.ocNo || '-' }}
+                </span>
+              </div>
+              <!-- } -->
+            </div>
+          </div>
+          <div class="row mb-4 owner-row">
+            <!-- <div class="col-lg-6 col-12">
+
+                            <div class="text-medium font-medium mb-10"><img src="images/owner-icon.svg"> {{user?.name}}
+                            </div>
+                            <div class="contact-info">
+                                <span class="text-gray"><i class="bi bi-envelope me-2"></i>{{user?.email}}</span>
+                                <span><i class="bi bi-telephone-plus me-2"></i>{{user?.mobile}}</span>
+                            </div>
+                        </div> -->
+            @for(jointowner of (jointOwner$ | async); track $index){
+            <div class="col-lg-6 col-12">
+              <div
+                class="text-medium font-medium mb-10"
+                [ngClass]="{ primaryUserBold: jointowner.ownerShipType == 'P' }"
+              >
+                <img src="images/owner-icon.svg" />
+                {{ jointowner?.name }}
+              </div>
+              <div class="contact-info">
+                <span
+                  ><i class="bi bi-envelope me-2"></i
+                  >{{ jointowner?.email }}</span
+                >
+                <span
+                  ><i class="bi bi-telephone-plus me-2"></i>+{{
+                    jointowner.mobile
+                  }}</span
+                >
+              </div>
+            </div>
+            }
+          </div>
+          @if(bookings$ | async) {
+          <div class="row mb-32 project-card-body justify-content-between gy-4">
+            <div class="col-lg-auto col-sm-4 col-6">
+              <span class="text-gray"
+                ><img src="images/build-icon.svg" />Building</span
+              >
+              <strong>{{ (bookings$ | async)?.[0]?.building }}</strong>
+            </div>
+            <div class="col-lg-auto col-sm-4 col-6">
+              <span class="text-gray"
+                ><img src="images/unit-icon.svg" />Unit</span
+              >
+              <strong>{{ (bookings$ | async)?.[0]?.unit }}</strong>
+            </div>
+            <div class="col-lg-auto col-sm-4 col-6">
+              <span class="text-gray"
+                ><img src="images/area-icon.svg" />Area</span
+              >
+              <strong>{{ (bookings$ | async)?.[0]?.area }}</strong>
+            </div>
+            <div class="col-lg-auto col-sm-4 col-6">
+              <span class="text-gray"
+                ><img src="images/floor-icon.svg" />Floor</span
+              >
+              <strong>{{ (bookings$ | async)?.[0]?.floor }}</strong>
+            </div>
+            <div class="col-lg-auto col-sm-4 col-6">
+              <span class="text-gray"
+                ><img src="images/car-icon.svg" />Car park</span
+              >
+              <strong>{{ (bookings$ | async)?.[0]?.carPark }}</strong>
+            </div>
+            <div class="col-lg-auto col-sm-4 col-6">
+              <span class="text-gray"
+                ><img src="images/type-icon.svg" />Unit type</span
+              >
+              <strong>{{ (bookings$ | async)?.[0]?.unitType }}</strong>
+            </div>
+          </div>
+
+          } @else {
+          <p>No booking data available.</p>
+          }
+          <div class="location">
+            <img src="images/location-icon.svg" />
+            {{ selectedProject?.address }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-32 gy-3">
+    <div class="col-lg-8 col-md-7 col-12">
+      <div class="HT-gray-card">
+        <div class="row align-items-center">
+          <div class="col-lg-5 col-12 mb-3 mb-lg-0">
+            <div class="HT-title">
+              <img src="images/icon2.svg" />Relationship Manager
+            </div>
+          </div>
+          <div class="col-lg-7 col-12">
+            <div class="manager-info">
+              <!-- <div class="manager-img"></div> -->
+              <ngx-avatars
+                [name]="(bookings$ | async)?.[0]?.rmName"
+                [round]="true"
+                [size]="40"
+              >
+              </ngx-avatars>
+              <div class="ps-4">
+                <div class="name">{{ (bookings$ | async)?.[0]?.rmName }}</div>
+                <div class="contact-info">
+                  <span
+                    ><i class="bi bi-envelope me-2"></i
+                    >{{ (bookings$ | async)?.[0]?.rmEmail
+                    }}</span
+                  >
+                  <span
+                    ><i class="bi bi-telephone-plus me-2"></i
+                    >{{ (bookings$ | async)?.[0]?.rmContact }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5 col-12">
+      <div
+        class="HT-danger-card d-flex align-items-center justify-content-between"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#kycModal"
+      >
+        <div class="HT-title align-items-start">
+          <img src="images/upload-icon.svg" />
+          <div>
+            KYC Details
+            <!-- <span class="tag danger"><i class="bi bi-dot"></i> 2 Pending</span> -->
+          </div>
+        </div>
+        <i class="bi bi-chevron-right"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade slider-modal"
+  id="sliderModal"
+  tabindex="-1"
+  aria-labelledby="sliderModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        @if (selectedProject?.listProjectImages &&
+        selectedProject?.listProjectImages?.length) {
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide"
+          data-bs-ride="true"
+        >
+          <div class="carousel-indicators">
+            @for ( sp of selectedProject?.listProjectImages; track $index) {
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              attr.data-bs-slide-to="{{ $index }}"
+              [class.active]="$index == 0"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            }
+            <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button> -->
+          </div>
+          <div class="carousel-inner">
+            @for ( sp of selectedProject?.listProjectImages; track $index) {
+            <div class="carousel-item" [ngClass]="{ active: $index == 0 }">
+              <img
+                [src]="sp?.imageUrl"
+                #projectImages
+                (error)="projectImages.src = 'images/project-icon.svg'"
+                class="w-100"
+                height="400px"
+              />
+            </div>
+            }
+            <!-- <div class="carousel-item active">
+                                <img src="images/slide1.jpg" class="w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/slide1.jpg" class="w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/slide1.jpg" class="w-100">
+                            </div> -->
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <img src="images/left-arrow.svg" />
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <img src="images/right-arrow.svg" />
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        } @else {
+        <div class="text-center">
+          <p>No images available</p>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

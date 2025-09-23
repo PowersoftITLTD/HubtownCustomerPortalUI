@@ -1,0 +1,100 @@
+/*** navbar styles *****/
+.dashboard-nav {
+    border-bottom: 1px solid #D3D3D3;
+    padding: 8px 0;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-items {
+        display: flex;
+        align-items: center;
+    }
+
+    .form-control {
+        width: 399px;
+        height: 48px;
+        background: #FFFFFF url("../../../public/images/search-icon.svg") no-repeat left 10px center;
+        border: 1px solid #EDEDED;
+        border-radius: 8px;
+        font-weight: 500;
+
+        padding: 10px 10px 10px 44px;
+
+        &::placeholder {
+            color: #767676;
+        }
+    }
+
+    .dropdown {
+        margin-left: 12px;
+
+        .dropdown-toggle {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #F5F5F5;
+            border-radius: 8px;
+            padding: 6px 10px;
+
+
+            &::after {
+                border: 0;
+                width: 14px;
+                height: 8px;
+                background: url("../../../public/images/down-icon.svg") no-repeat center;
+            }
+        }
+
+        &.build-dropdown {
+            .dropdown-toggle {
+                // width: 249px;
+                padding-left: 14px;
+                padding-right: 17px;
+            }
+
+            .option {
+                display: flex;
+                align-items: center;
+                // justify-content: center;
+                font-weight: 500;
+                line-height: 140%;
+
+                img {
+                    margin-right: 8px;
+                }
+            }
+        }
+
+        &.user-dropdown {
+            .dropdown-toggle {
+                img {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-right: 12px;
+                }
+            }
+        }
+    }
+
+    .notifications {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #FFFFFF;
+        border: 1px solid #F5F5F5;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-left: 12px;
+        
+
+    }
+}

@@ -1,0 +1,37 @@
+<!-- faq box -->
+<div class="HT-details-card">
+    <div class="HT-card-head">
+        <div class="HT-title">
+            <img src="images/faq-icon.svg">
+            <span class="dark-text">Frequently Asked Questions</span>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @if(faqs$ | async) {
+          <div class="accordion faq-accordion" id="accordionExample">
+            @for(faq of faqs$ | async; track $index) {
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      attr.data-bs-target="#collapse-{{$index + 10}}" aria-expanded="true" attr.aria-controls="collapse-{{$index + 10}}" >
+                      {{faq?.question}}
+                    </button>
+                  </h2>
+                  <div id="collapse-{{$index + 10}}" class="accordion-collapse collapse show" aria-labelledby="heading1">
+                    <div class="accordion-body">
+                      {{faq?.answer}}
+                    </div>
+                  </div>
+                </div>
+              }
+            
+        </div>
+        } @else {
+          <!-- <div class="text-center"> -->
+            <p>No faqs to show.</p>
+          <!-- </div> -->
+        }
+          
+          
+    </div>
+</div>

@@ -1,0 +1,31 @@
+export interface Booking {
+    bookingID: number;
+    projectId: number;
+    ocNo: string;
+    ocDate: string;
+    status: string;
+    building: string;
+    unit: string;
+    area: string;
+    floor: string;
+    carPark: number;
+    unitType: string;
+    outstandingWithinDueAmount: number;
+    outstandingOverdueAmount: number;
+    tdsOutstanding: number;
+    registrationNumber: string;
+    registrationActualDate: string;
+    registrationTentativeDate: string;
+    fitoutDate: string;
+    possessionFinalDate: string;
+    possessionDocumentUrl: any;
+    registrationDocumentUrl:any;
+    rmName: string;
+    rmEmail: string;
+    rmContact: string;
+    isActive: boolean;
+    createdBy: string | null;
+    createdAt: string;
+    modifiedBy: string | null;
+    modifiedAt: string | null;
+  }

@@ -1,0 +1,30 @@
+.button-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip for error message */
+.error-tooltip {
+  visibility: hidden;
+  background-color: #fff;
+  color: #858181;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  bottom: 80%; /* Adjust position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0px 0px 21px #cccbcb;
+}
+
+/* Show tooltip when button is hovered */
+.button-container:hover button.show-error + .error-tooltip {
+  visibility: visible;
+  opacity: 1;
+}

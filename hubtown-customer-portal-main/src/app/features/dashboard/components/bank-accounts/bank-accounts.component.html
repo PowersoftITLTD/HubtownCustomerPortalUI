@@ -1,0 +1,160 @@
+<!-- DL & Receipts box -->
+<div class="row">
+  <div class="col-md-4 col-12 mb-3">
+    <div class="HT-details-card">
+      <div class="HT-card-head">
+        <div class="HT-title">
+          <img src="images/calc-icon1.svg" />
+          <span class="dark-text"
+            >{{ formatToINRCurrency(outstandingWithinDueAmout) }}
+            <span class="text-gray small mt-2"
+              >Outstanding Within Due Amount</span
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-12 mb-3">
+    <div class="HT-details-card">
+      <div class="HT-card-head">
+        <div class="HT-title">
+          <img src="images/calc-icon2.svg" />
+          <span class="dark-text"
+            >{{ formatToINRCurrency(outstandingOverDueAmount) }}
+            <span class="text-gray small mt-2"
+              >Outstanding Overdue Amount</span
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-12 mb-3">
+    <div class="HT-details-card">
+      <div class="HT-card-head">
+        <div class="HT-title">
+          <img src="images/tds-icon.svg" />
+          <span class="dark-text"
+            >{{ formatToINRCurrency(tdsOutstanding) }}
+            <span class="text-gray small mt-2">TDS Outstanding</span></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- bank accounts box -->
+<div class="HT-details-card mb-3">
+  <div class="HT-card-head">
+    <div class="HT-title">
+      <img src="images/summary-icon.svg" />
+      <span class="dark-text">Account Summary</span>
+    </div>
+  </div>
+  <div class="card-body p-4">
+    <div class="table-responsive " style="text-align: end;">
+      <table class="table table-bordered">
+        @if(accountSummaryList && accountSummaryList.length){ 
+        <thead class="bg-gray text-right">
+          <tr>
+            <th rowspan="2" colspan="1">Particulars</th>
+            <th colspan="2">Flat Cosideration</th>
+            <th colspan="2">Society Charges</th>
+            <th colspan="2">Interest/Others</th>
+            <th rowspan="2" colspan="1">Unadjusted</th>
+          </tr>
+          <tr>
+            <th scope="col">Amount</th>
+            <th scope="col">Taxes</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Taxes</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Taxes</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (accountSummary of accountSummaryList ; track $index) {
+          <tr>
+            <td>{{ accountSummary?.particulars }}</td>
+            <td>
+              {{
+                formatToINRCurrencyHandle(accountSummary?.flatConsideration?.amount)
+              }}
+            </td>
+            <td>
+              {{
+                formatToINRCurrencyHandle(accountSummary?.flatConsideration?.taxes)
+              }}
+            </td>
+            <td>
+              {{ formatToINRCurrencyHandle(accountSummary?.societyCharges?.amount) }}
+            </td>
+            <td>
+              {{ formatToINRCurrencyHandle(accountSummary?.societyCharges?.taxes) }}
+            </td>
+            <td>
+              {{ formatToINRCurrencyHandle(accountSummary?.interestOthers?.amount) }}
+            </td>
+            <td>
+              {{ formatToINRCurrencyHandle(accountSummary?.interestOthers?.taxes) }}
+            </td>
+            <td>
+              {{ formatToINRCurrencyHandle(accountSummary?.unadjusted?.unadjusted) }}
+            </td>
+          </tr>
+          }
+        </tbody>
+        }@else {
+        <!-- <div class="text-center"> -->
+        <p style="text-align: left;">No account summary details available.</p>
+        <!-- </div> -->
+        }
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- bank accounts box -->
+<div class="HT-details-card mb-3">
+  <div class="HT-card-head">
+    <div class="HT-title">
+      <img src="images/bank-icon.svg" />
+      <span class="dark-text">Bank Payable Accounts</span>
+    </div>
+  </div>
+  <div class="card-body p-4">
+    <div class="table-responsive" style="text-align: end">
+      <table class="table table-bordered">
+        @if(bpaData.length > 0) 
+        { 
+        <thead class="bg-gray">
+          <tr>
+            <th scope="col">Particulars</th>
+            <th scope="col">Bank Name</th>
+            <th scope="col">Branch Name</th>
+            <th scope="col">Account no.</th>
+            <th scope="col">IFSC Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(bpa of bpa$ | async; track $index) {
+          <tr>
+            <td>{{ bpa?.particulars }}</td>
+            <td>{{ bpa?.bankName }}</td>
+            <td>{{ bpa?.branchName }}</td>
+            <td>{{ bpa?.accountNumber }}</td>
+            <td>{{ bpa?.ifscCode }}</td>
+          </tr>
+          }
+        </tbody>
+         } @else {
+        <!-- <div class="text-center"> -->
+        <p>No bank payable accounts details available.</p>
+        <!-- </div> -->
+        }
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+ <!-- start section login -->
+ <section class="HT-login">
+    <app-toast></app-toast>
+    <div class="row g-0">
+        <div class="col-md-6">
+            <div class="page-bg" style="background:url('images/login.svg');"></div>
+        </div>
+        <div class="col-md-6 col-12 right-side">
+            @if(!showOtp) {
+           <app-login-form (formDataChange)="handleSendOtpClick($event)"></app-login-form>
+            } @else {
+            <app-otp-form (otpChange)="handleLoginClick($event)" [emailId]="email" [mobileNumber]="phoneNumber" [(showOtp)]="showOtp" (resendOtp)="generateOtp()"></app-otp-form>
+            }
+        </div>
+    </div>
+</section>

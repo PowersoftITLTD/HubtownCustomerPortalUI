@@ -1,0 +1,227 @@
+/* profile UI css */
+.profile-card {
+  width: 290px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.project-image {
+  border: 1px solid #f8f8f8;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 40px;
+  max-width: 50px;
+}
+
+.removeDropArrow::after {
+  display: none;
+}
+
+.profile-name {
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.profile-info {
+  margin-top: 10px;
+}
+
+.profile-info div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-info i {
+  font-size: 16px;
+  margin-right: 10px;
+  color: #000;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+}
+
+.logout i {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.logout a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.divider {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid #542525;
+}
+
+/* notification css */
+
+.notifications-container {
+  width: 360px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.notifications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.notifications-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.icon i {
+  font-size: 20px;
+  color: #888;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.timestamp {
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+.options {
+  margin-left: 12px;
+}
+
+.options-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.notifications i {
+  cursor: pointer;
+}
+
+.notification-wrapper {
+  display: inline-block;
+}
+
+.red-dot {
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
+
+/* Dropdown wrapper styles */
+.dropdown-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Remove arrow icon when using ng-select */
+.dropdown-wrapper.ng-select-mode::after {
+  display: none !important;
+}
+
+/* Form control (native select) styles only */
+.form-control-dropdown {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control-dropdown:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.form-control-dropdown option {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+.form-control-dropdown option:disabled {
+  color: #aaa;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .form-control-dropdown {
+    font-size: 14px;
+    padding: 8px 10px;
+    width: 80%;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-control-dropdown {
+    font-size: 12px;
+    padding: 6px 8px;
+    width: 80%;
+    min-width: 100px;
+  }
+}
+
+/* Optional: Prevent browser default arrows */
+ng-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none !important;
+}

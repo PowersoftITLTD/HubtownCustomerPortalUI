@@ -1,0 +1,88 @@
+.form-label{
+    font-size: 14px;
+line-height: 140%;
+color: #454545;
+margin-bottom: 6px;
+}
+.form-control{
+    height: 52px;
+    background: #FFFFFF;
+    border: 1px solid #D6D6D6;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
+    padding:14px;
+    &::placeholder{
+        color: #D6D6D6;
+    }
+}
+
+
+
+
+
+/*******************
+
+
+.selected-range {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.calc-input:focus-within {
+    background: #fff;
+    color: #3C425D;
+}
+
+.custom-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 24px;
+    background: #F5F5F5;
+    border-radius: 16px;
+    outline: none;
+    padding: 0;
+    margin: 0;
+  
+    
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background:#fff;
+      cursor: pointer;
+      transition: background .15s ease-in-out;
+  
+    }
+  
+    &:active::-webkit-slider-thumb {
+      background: #fff;
+    }
+  
+    &::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      transition: background .15s ease-in-out;
+      box-shadow: 0 0 2px 7px rgba(0, 0, 0, 0.02);
+      
+    }
+  
+   
+    
+   
+  }
+    **********************/
+    .custom-range {
+      width: 100%;
+      height: 24px;
+      border-radius: 16px;
+      outline: none;
+     
+    }

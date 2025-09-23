@@ -1,0 +1,151 @@
+.form-box {
+  width: 100% !important;
+  padding: 0;
+  margin: 0;
+}
+
+.form-wrapper {
+  width: 140%;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  position: relative;
+  left: 75%;
+  bottom: 35px ;
+  transform: translateX(-50%);
+}
+
+h3 {
+  color: rgba(67, 67, 67, 0.831);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+h3::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ffcc00;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem; /* Reduced gap */
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-control {
+  height: 45px;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.btn {
+  font-size: 18px;
+  padding: 12px;
+}
+
+.dropdown-img img {
+  position: absolute;
+  right: 10px;
+  top: 65%;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+.dropdown-img img.rotate {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.timer-container {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+/* Header Bar */
+.form-header-bar {
+  position: relative;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Logout Button - top right */
+.logout-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #dc3545;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: white;
+  color: #dc3545;
+}
+
+.back:hover{
+  color: #ffcc00;
+}
+
+.back{
+  margin-bottom: -3rem;
+  margin-top: 1rem;
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .form-wrapper {
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    transform: none;
+    position: absolute;
+    box-shadow: none;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 1440px) {
+  .form-wrapper {
+    width: 160%; /* not 200%, better for large viewports */
+    left: 380px;
+    transform: translateX(-50%);
+    bottom: 35px;
+  }
+  .form-control {
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,142 @@
+.range-slider input[type="range"] {
+  -webkit-appearance: none; /* Remove default appearance */
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(to right, #EAB93E 0%, #EAB93E var(--value), #e0e0e0 var(--value), #e0e0e0 100%);
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s ease-in-out; /* Ensure smooth transition */
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #EAB93E;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #EAB93E;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.range-slider input[type="range"]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #EAB93E;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Cross-browser track fill */
+.range-slider input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #EAB93E 0%, #EAB93E var(--value), #e0e0e0 var(--value), #e0e0e0 100%);
+  border-radius: 10px; /* Make the track rounded */
+}
+
+.range-slider input[type="range"]::-moz-range-track {
+  background: linear-gradient(to right, #EAB93E 0%, #EAB93E var(--value), #e0e0e0 var(--value), #e0e0e0 100%);
+  border-radius: 10px; /* Make the track rounded */
+}
+
+.range-slider input[type="range"]::-ms-track {
+  background: linear-gradient(to right, #EAB93E 0%, #EAB93E var(--value), #e0e0e0 var(--value), #e0e0e0 100%);
+  border-radius: 10px;
+  border-color: transparent;
+  /* Remove border for IE */
+}
+
+/* Optional: Add a rounded border to the ends of the track */
+.range-slider input[type="range"]::-ms-fill-lower {
+  background: #EAB93E; /* Color for the filled part */
+  border-radius: 4px 0 0 4px; /* Rounded left end */
+}
+
+.range-slider input[type="range"]::-ms-fill-upper {
+  background: #e0e0e0; /* Color for the unfilled part */
+  border-radius: 0 4px 4px 0; /* Rounded right end */
+}
+
+/* Timeline Handle CSS */
+.range-slider-container {
+  position: relative;
+  width: 100%;
+}
+
+.current-range {
+  width: 100%;
+  height: 7px;
+  background: #ededed;
+  border-radius: 50px;
+}
+
+.current-range > div {
+  background-color: #eab93e;
+  height: 100%;
+  border-radius: 50px;
+}
+
+.custom-range {
+  width: 100%;
+  position: relative;
+  z-index: 0; /* Ensures slider is above dots */
+}
+
+.range-dots {
+  position: absolute;
+  top: 50%; /* Align dots vertically with slider */
+  width: 100%;
+  height: 10px; /* Adjust for dot size */
+  transform: translateY(-50%);
+}
+
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ffe29a;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #b8b8b8;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot .active-dot {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: #8080804d;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot-tooltip {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  bottom: calc(-100% + 25px);
+  width: 230px;
+  font-size: 12px;
+  color: #858181;
+  padding: 5px 13px;
+  border-radius: 10px;
+  left: -50%;
+  box-shadow: 0px 0px 21px #cccbcb;
+  transform: translateX(-70%);
+  cursor: pointer;
+  line-height: 1.7;
+}
+
+.dot:hover .dot-tooltip {
+  display: block !important;
+}
