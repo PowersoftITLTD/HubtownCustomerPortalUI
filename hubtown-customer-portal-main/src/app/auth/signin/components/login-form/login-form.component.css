@@ -1,0 +1,9 @@
+.login-form{
+    margin-top:10px !important;
+}
+
+
+.logo-image{
+  width: 15rem; /* or 300px, 400px, etc. */
+  height: auto; /* keeps aspect ratio */
+}

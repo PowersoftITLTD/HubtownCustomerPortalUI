@@ -238,6 +238,35 @@ small {
   color: #454545;
   line-height: 125%;
 }
+
+.logo-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 300px; /* Optional: limit image size */
+  height: auto;
+}
+
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.logo-image {
+  max-width: 300px; /* Optional size limit */
+  height: auto;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-image {
+  max-width: 300px; /* or whatever size fits your layout */
+  height: auto;
+}
+
 .project-card .project-card-body .text-gray img {
   margin-right: 8px;
 }
@@ -712,6 +741,16 @@ small {
 }
 .HT-login form {
   margin-top: 40px;
+}
+
+
+.HT-login .login-form{
+    margin-top: 20px;
+}
+
+
+.HT-login-signup form {
+  margin-top: 20px;
 }
 .HT-login form .btn {
   font-size: 18px;

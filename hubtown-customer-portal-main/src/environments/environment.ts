@@ -6,8 +6,8 @@ export const environment = {
   appVersion: '', //`${version}-dev`,
   // Replace this with your server API URL
   // apiUrl: 'http://13.127.136.90:5002/api',
-  apiUrl: 'http://13.204.21.84:5000/api',
-    // apiUrl: 'https://cpapi.piplapps.com/api',
+  // apiUrl: 'http://13.204.21.84:5000/api',
+    apiUrl: 'https://cpapi.piplapps.com/api',
     
   settings: {
     auth: {
