@@ -1,0 +1,495 @@
+{
+  "projectDetails": {
+    "projectName": "25 South",
+    "status": "Under Construction",
+    "building": "Tower A",
+    "unit": "1204",
+    "area": "1,200 Sq Ft",
+    "floor": "4th Floor",
+    "carPark": 2,
+    "unitType": "Base units",
+    "reraNo": "RERA-XYZ67890",
+    "officeAddress": "Office No. 101, Skyview Building, Andheri - Kurla Road, Mumbai, Maharashtra 400059, India"
+  },
+  "relationshipManager": {
+    "name": "Aneesh Vishwakarma",
+    "email": "john.doe@example.com",
+    "phone": "+91 98765 43210"
+  },
+  "kycStatus": {
+    "status": "Pending",
+    "pendingCount": 2
+  },
+  "demandBreakup": {
+    "flatConsideration": "₹10,09,71,950.00",
+    "societyCharges": "₹10,86,290.00",
+    "statutoryRequirements": "₹1,72,10,732.00",
+    "totalWithoutTax": "₹12,02,26,172.00"
+  },
+  "jointOwners": [
+    {
+      "name": "Rahul Gupta",
+      "email": "john.doe@example.com",
+      "phone": "+91 98765 43210"
+    },
+    {
+      "name": "Priyadarshini Vishwanath Rao",
+      "email": "john.doe@example.com",
+      "phone": "+91 98765 43210"
+    },
+    {
+      "name": "Vikram Shah",
+      "email": "vikram.shah@example.com",
+      "phone": "+91 91234 56789"
+    },
+    {
+      "name": "Anjali Mehta",
+      "email": "anjali.mehta@example.com",
+      "phone": "+91 89876 54321"
+    },
+    {
+      "name": "Manoj Patel",
+      "email": "manoj.patel@example.com",
+      "phone": "+91 99887 66554"
+    },
+    {
+      "name": "Nisha Kapoor",
+      "email": "nisha.kapoor@example.com",
+      "phone": "+91 92345 67890"
+    },
+    {
+      "name": "Deepak Agarwal",
+      "email": "deepak.agarwal@example.com",
+      "phone": "+91 98765 12345"
+    }
+  ],
+  "milestone": {
+    "currentMilestone": "Groundbreaking Completed",
+    "dueAmount": "₹2,45,000",
+    "certificate": "Architecture Certificate",
+    "demandLetter": "Demand Letter",
+    "tentativeStartDate": "July 15th, 2024",
+    "tentativeEndDate": "Aug 15th, 2024",
+    "actualStartDate": "July 15th, 2024",
+    "actualEndDate": "Aug 15th, 2024"
+  },
+  "paymentSchedule": {
+    "scheduledAmount": "₹1,45,000",
+    "upcomingMilestoneStartDate": "July 15, 2024"
+  },
+  "accountSummary": [
+    {
+      "particulars": "DL Amount Raised",
+      "flatConsideration": {
+        "amount": "₹8,50,00,136.00",
+        "taxes": "₹1,02,00,000.00"
+      },
+      "societyCharges": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "interestOthers": {
+        "amount": "₹2,550",
+        "taxes": "0"
+      }
+    },
+    {
+      "particulars": "Discount on DL",
+      "flatConsideration": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "societyCharges": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "interestOthers": {
+        "amount": "0",
+        "taxes": "0"
+      }
+    },
+    {
+      "particulars": "Receipts",
+      "flatConsideration": {
+        "amount": "₹8,50,00,136.00",
+        "taxes": "₹1,02,00,000.00"
+      },
+      "societyCharges": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "interestOthers": {
+        "amount": "₹2,550",
+        "taxes": "0"
+      }
+    },
+    {
+      "particulars": "Transfer Adjusted",
+      "flatConsideration": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "societyCharges": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "interestOthers": {
+        "amount": "0",
+        "taxes": "0"
+      }
+    },
+    {
+      "particulars": "TDS Amount Received",
+      "flatConsideration": {
+        "amount": "₹8,50,00,136.00",
+        "taxes": "0"
+      },
+      "societyCharges": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "interestOthers": {
+        "amount": "₹2,550",
+        "taxes": "0"
+      }
+    },
+    {
+      "particulars": "Amount Payable",
+      "flatConsideration": {
+        "amount": "₹136",
+        "taxes": "0"
+      },
+      "societyCharges": {
+        "amount": "0",
+        "taxes": "0"
+      },
+      "interestOthers": {
+        "amount": "0",
+        "taxes": "0"
+      }
+    },
+    {
+      "particulars": "Late Payment Charges",
+      "flatConsideration": {
+        "amount": "₹5,000",
+        "taxes": "₹500"
+      },
+      "societyCharges": {
+        "amount": "₹1,000",
+        "taxes": "₹100"
+      },
+      "interestOthers": {
+        "amount": "₹250",
+        "taxes": "₹25"
+      }
+    },
+    {
+      "particulars": "Penalty Fees",
+      "flatConsideration": {
+        "amount": "₹15,000",
+        "taxes": "₹1,500"
+      },
+      "societyCharges": {
+        "amount": "₹3,000",
+        "taxes": "₹300"
+      },
+      "interestOthers": {
+        "amount": "₹500",
+        "taxes": "₹50"
+      }
+    },
+    {
+      "particulars": "Advance Payment",
+      "flatConsideration": {
+        "amount": "₹4,00,000",
+        "taxes": "₹40,000"
+      },
+      "societyCharges": {
+        "amount": "₹50,000",
+        "taxes": "₹5,000"
+      },
+      "interestOthers": {
+        "amount": "₹2,000",
+        "taxes": "₹200"
+      }
+    },
+    {
+      "particulars": "Maintenance Fees",
+      "flatConsideration": {
+        "amount": "₹20,000",
+        "taxes": "₹2,000"
+      },
+      "societyCharges": {
+        "amount": "₹5,000",
+        "taxes": "₹500"
+      },
+      "interestOthers": {
+        "amount": "₹300",
+        "taxes": "₹30"
+      }
+    },
+    {
+      "particulars": "Service Charge",
+      "flatConsideration": {
+        "amount": "₹10,000",
+        "taxes": "₹1,000"
+      },
+      "societyCharges": {
+        "amount": "₹1,200",
+        "taxes": "₹120"
+      },
+      "interestOthers": {
+        "amount": "₹100",
+        "taxes": "₹10"
+      }
+    },
+    {
+      "particulars": "Utility Fees",
+      "flatConsideration": {
+        "amount": "₹30,000",
+        "taxes": "₹3,000"
+      },
+      "societyCharges": {
+        "amount": "₹2,000",
+        "taxes": "₹200"
+      },
+      "interestOthers": {
+        "amount": "₹150",
+        "taxes": "₹15"
+      }
+    },
+    {
+      "particulars": "Security Deposit",
+      "flatConsideration": {
+        "amount": "₹1,00,000",
+        "taxes": "₹10,000"
+      },
+      "societyCharges": {
+        "amount": "₹8,000",
+        "taxes": "₹800"
+      },
+      "interestOthers": {
+        "amount": "₹500",
+        "taxes": "₹50"
+      }
+    },
+    {
+      "particulars": "Housekeeping Charges",
+      "flatConsideration": {
+        "amount": "₹7,500",
+        "taxes": "₹750"
+      },
+      "societyCharges": {
+        "amount": "₹1,200",
+        "taxes": "₹120"
+      },
+      "interestOthers": {
+        "amount": "₹100",
+        "taxes": "₹10"
+      }
+    },
+    {
+      "particulars": "Repair Charges",
+      "flatConsideration": {
+        "amount": "₹12,000",
+        "taxes": "₹1,200"
+      },
+      "societyCharges": {
+        "amount": "₹2,500",
+        "taxes": "₹250"
+      },
+      "interestOthers": {
+        "amount": "₹300",
+        "taxes": "₹30"
+      }
+    },
+    {
+      "particulars": "Parking Charges",
+      "flatConsideration": {
+        "amount": "₹5,000",
+        "taxes": "₹500"
+      },
+      "societyCharges": {
+        "amount": "₹2,000",
+        "taxes": "₹200"
+      },
+      "interestOthers": {
+        "amount": "₹50",
+        "taxes": "₹5"
+      }
+    }
+  ],
+  "bankPayableAccounts": [
+    {
+      "particulars": "Flat Cost",
+      "bankName": "State Bank of India (SBI)",
+      "branchName": "Connaught Place, New Delhi",
+      "accountNo": "123456789012",
+      "ifscCode": "SBIN0001234"
+    },
+    {
+      "particulars": "GST Payment",
+      "bankName": "HDFC Bank",
+      "branchName": "Andheri West, Mumbai",
+      "accountNo": "987654321098",
+      "ifscCode": "HDFC0005678"
+    },
+    {
+      "particulars": "Stamp Duty Payment",
+      "bankName": "ICICI Bank",
+      "branchName": "Churchgate, Mumbai",
+      "accountNo": "567890123456",
+      "ifscCode": "ICIC0004321"
+    },
+    {
+      "particulars": "Maintenance Charges",
+      "bankName": "Axis Bank",
+      "branchName": "Powai, Mumbai",
+      "accountNo": "234567890123",
+      "ifscCode": "UTIB0003456"
+    },
+    {
+      "particulars": "Property Tax",
+      "bankName": "Bank of Baroda",
+      "branchName": "Fort, Mumbai",
+      "accountNo": "345678901234",
+      "ifscCode": "BARB0005678"
+    },
+    {
+      "particulars": "Legal Charges",
+      "bankName": "Kotak Mahindra Bank",
+      "branchName": "Bandra, Mumbai",
+      "accountNo": "456789012345",
+      "ifscCode": "KKBK0006789"
+    },
+    {
+      "particulars": "Society Registration Fee",
+      "bankName": "Punjab National Bank (PNB)",
+      "branchName": "Vile Parle, Mumbai",
+      "accountNo": "678901234567",
+      "ifscCode": "PUNB0001234"
+    }
+  ],
+  "outstandingPayments": {
+    "outstandingWithinDueAmount": "₹0",
+    "outstandingOverdueAmount": "₹16 lac",
+    "tdsOutstanding": "₹5L"
+  },
+  "demandLetters": [
+    {
+      "invoiceNo": "INV7890123",
+      "status": "pending",
+      "amount": "₹13.54 lacs",
+      "date": "July 15th, 2024"
+    },
+    {
+      "invoiceNo": "INV4567890",
+      "status": "pending",
+      "amount": "₹2.5 lacs",
+      "date": "August 10th, 2024"
+    },
+    {
+      "invoiceNo": "INV1234567",
+      "status": "cleared",
+      "amount": "₹4.75 lacs",
+      "date": "June 5th, 2024"
+    },
+    {
+      "invoiceNo": "INV9876543",
+      "status": "pending",
+      "amount": "₹8.25 lacs",
+      "date": "May 20th, 2024"
+    },
+    {
+      "invoiceNo": "INV6543210",
+      "status": "cleared",
+      "amount": "₹9.15 lacs",
+      "date": "April 10th, 2024"
+    },
+    {
+      "invoiceNo": "INV3456789",
+      "status": "pending",
+      "amount": "₹3.10 lacs",
+      "date": "September 1st, 2024"
+    }
+  ],
+  "registrationDetails": {
+    "registrationNumber": "ABC-12345",
+    "actualDate": "July 05, 2024",
+    "tentativeDate": "July 10th, 2024",
+    "fitoutDate": "July 05, 2024",
+    "possessionFinalDate": "July 05, 2024"
+  },
+  "upcomingProjects": [
+    {
+      "name": "Elixir",
+      "address": "14, Dr Annie Besant Rd, Century Bazaar, Prabhadevi, Mumbai, Maharashtra 400025"
+    },
+    {
+      "name": "Ashford",
+      "address": "14, Dr Annie Besant Rd, Century Bazaar, Prabhadevi, Mumbai, Maharashtra 400025"
+    },
+    {
+      "name": "West Square",
+      "address": "14, Dr Annie Besant Rd, Century Bazaar, Prabhadevi, Mumbai, Maharashtra 400025"
+    },
+    {
+      "name": "Sunset Boulevard",
+      "address": "10, Marine Drive, Nariman Point, Mumbai, Maharashtra 400021"
+    },
+    {
+      "name": "Ocean View",
+      "address": "22, Juhu Tara Road, Juhu, Mumbai, Maharashtra 400049"
+    },
+    {
+      "name": "Green Meadows",
+      "address": "45, JVLR, Andheri East, Mumbai, Maharashtra 400093"
+    },
+    {
+      "name": "Skyline Heights",
+      "address": "33, Linking Road, Bandra West, Mumbai, Maharashtra 400050"
+    },
+    {
+      "name": "Urban Nest",
+      "address": "19, Peddar Road, Malabar Hill, Mumbai, Maharashtra 400026"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is there a free trial available?",
+      "answer": "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible."
+    },
+    {
+      "question": "Can I change my plan later?",
+      "answer": "Yes, you can change your plan at any time."
+    },
+    {
+      "question": "What is your cancellation policy?",
+      "answer": "You can cancel your subscription at any time with no penalty."
+    },
+    {
+      "question": "Can other info be added to an invoice?",
+      "answer": "Yes, additional information can be added to the invoice upon request."
+    },
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept credit cards, debit cards, and bank transfers."
+    },
+    {
+      "question": "How do I contact support?",
+      "answer": "You can reach our support team via email at support@example.com or call us at +91 12345 67890."
+    },
+    {
+      "question": "Are there any hidden fees?",
+      "answer": "No, we are transparent with all our fees. All charges are disclosed upfront."
+    },
+    {
+      "question": "Do you offer discounts for annual subscriptions?",
+      "answer": "Yes, we offer a 10% discount on annual subscriptions."
+    },
+    {
+      "question": "How do I upgrade my plan?",
+      "answer": "You can upgrade your plan anytime through your account settings or by contacting customer service."
+    }
+  ]
+}

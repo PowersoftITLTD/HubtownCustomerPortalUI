@@ -113,9 +113,24 @@ export class DLComponent implements OnInit {
     this.store.dispatch(new SetViewDetail(detail));
   }
 
-  downloadFile(filename: string) {
+  downloadFile(filename: any) {
+    console.log('File name: ', filename);
     if (filename && filename != '') {
       this.store.dispatch(new DownloadBookingFile(filename));
     }
   }
+
+ downloadDemandORReceiptLetter(filename: any) {
+  // console.log('File DemandLetter: ', filename?.invoiceUrl);
+  // if (filename && filename != '') {
+  //   const blob = new Blob([''], { type: 'application/pdf' });
+  //   const url = URL.createObjectURL(blob);
+  //   window.open(url, '_blank');
+
+  //   // Clean up memory after opening
+  //   setTimeout(() => URL.revokeObjectURL(url), 10000);
+  // }
+}
+
+
 }

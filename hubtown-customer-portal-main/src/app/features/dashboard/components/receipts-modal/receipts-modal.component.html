@@ -10,7 +10,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="HT-title">
-          <img src="images/receipts-icon.svg" />{{ viewDetail?.title }}
+          <img src="images/receipts-icon.svg"  />{{ viewDetail?.title }}
         </div>
         <button
           type="button"
@@ -28,7 +28,7 @@
                   @for(hdr of viewDetail?.headers;track $index){
                   <th>{{ hdr }}</th>
                   }
-                  <th></th>
+                  <!-- <th></th> -->
                 </tr>
               </thead>
               <tbody style="text-align: end">
@@ -36,9 +36,15 @@
                 <tr>
                   <td>{{ d?.incrementNo }}</td>
                   <td>{{ !d?.date ||d?.date?.startsWith('1900')? '-': (d?.date | date)}}</td>
-                  <td>{{ d?.uniqueNo }}</td>
+                  <td>
+                    <span  (click)="downloadDemandORReceiptLetter(d || '')" >
+                       <img type="button" src="images/attach-icon.svg"/>
+                    </span>
+                    {{ d?.uniqueNo }}
+                  </td>
                   <td>{{ formatToINRCurrency(d?.amount) }}</td>
                   <td
+                  *ngIf="viewDetail?.title === 'Demand Letters'"
                     style="
                       cursor: pointer;
                       word-break: break-word;
@@ -65,7 +71,7 @@
                         class="btn btn-download"
                         (click)="downloadFile(d?.url || '')"
                       >
-                        <img src="images/download-icon.svg" />
+                        <img  src="images/download-icon.svg" />
                       </button>
                     </div>
                   </td>

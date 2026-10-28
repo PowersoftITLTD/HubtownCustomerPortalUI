@@ -25,13 +25,13 @@
         <div class="bordered">
           <div class="d-flex align-items-center justify-content-between mb-2">
             <div class="download-file-box big-box p-0 border-0">
-              <img src="images/attach-icon.svg" />
+              <img src="images/attach-icon.svg"  type="button" (click)="downloadDemandORReceiptLetter(demandLetter || '')"/>
               <span class="pe-2">{{ demandLetter?.invoiceNo }}</span>
               @if(demandLetter?.invoiceUrl){
               <div class="button-container">
                 <button
                   class="btn btn-download"
-                  (click)="downloadFile(demandLetter?.invoiceUrl || '')"
+                  (click)="downloadFile(demandLetter?.invoiceUrl || '52142')"
                   [disabled]="!demandLetter.invoiceUrl"
                   [class.show-error]="!demandLetter.invoiceUrl"
                 >
@@ -103,8 +103,12 @@
         track $index){
         <div class="bordered">
           <div class="d-flex align-items-center justify-content-between mb-2">
+              
             <div class="download-file-box big-box p-0 border-0">
-              <img src="images/attach-icon.svg" />
+              <!-- @if (receipt?.receiptUrl) {
+              
+              } -->
+              <img src="images/attach-icon.svg" (click)="downloadDemandORReceiptLetter(receipt)" type="button"  />
               <span class="pe-2">{{ receipt?.receiptNo }}</span>
 
               <div class="button-container">

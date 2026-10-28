@@ -171,10 +171,9 @@
 
 /* Form control (native select) styles only */
 .form-control-dropdown {
-  width: 100%;
   padding: 10px 12px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 8px;
   background-color: #fff;
   color: #333;
@@ -224,4 +223,97 @@ ng-select {
   -moz-appearance: none;
   appearance: none;
   background-image: none !important;
+}
+
+
+/* Make ng-select look like your existing control */
+.form-control-dropdown ::ng-deep .ng-select-container {
+  min-height: 38px;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  padding: 0 0.5rem;
+    cursor: text;
+
+}
+
+.form-control-dropdown ::ng-deep .ng-select-container .ng-arrow-wrapper {
+  cursor: pointer;
+}
+/* Dropdown panel width (works when NOT appended to body) */
+.form-control-dropdown ::ng-deep .ng-dropdown-panel {
+  min-width: 100%;
+}
+
+/* Search input inside the panel */
+.form-control-dropdown ::ng-deep .ng-dropdown-panel .ng-dropdown-header input {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 4px 8px;
+  width: 100%;
+    cursor: text;
+}
+
+.form-control-dropdown ::ng-deep .ng-select-container:not(.ng-select-disabled) {
+  cursor: text;
+}
+
+/* Highlighted / selected option */
+.form-control-dropdown ::ng-deep .ng-option.ng-option-marked {
+  background-color: #f1f3f5;
+}
+
+.form-control-dropdown ::ng-deep .ng-option.ng-option-selected {
+  background-color: #e7f1ff;
+  font-weight: 600;
+}
+
+
+/* Loader overlay — scoped to its control only */
+.control-loader {
+  position: absolute;
+  inset: 0;                                   /* covers only the parent (the select) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 20;                                /* above the ng-select control */
+  border-radius: 0.375rem;
+  pointer-events: all;                        /* block clicks while loading */
+}
+
+/* ===== Dashboard nav layout ===== */
+.dashboard-nav .container {
+  display: flex;
+  align-items: center;
+  gap: 16px;                 /* space between logo and select */
+}
+
+/* Logo — never shrink, stay inline */
+.dashboard-nav .container > a {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* User select — sits right beside the logo */
+.dashboard-nav .dropdown-container {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;            /* take only what it needs */
+  min-width: 220px;          /* give ng-select a usable width */
+  max-width: 660px;
+  margin-bottom: 0;          /* kill the mb-8 causing vertical offset */
+}
+
+.dashboard-nav .dropdown-container .form {
+  width: 100%;
+  margin: 0;
+}
+
+/* Push bell + profile + project dropdown to the far right */
+.dashboard-nav .navbar-items {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }

@@ -22,7 +22,9 @@ export class ReceiptsModalComponent implements OnInit{
   ngOnInit(): void {
     this.store.select(BookingState.getViewDetails).subscribe(detail=>{
       if(detail){
-        this.viewDetail = detail;   
+        this.viewDetail = detail;  
+             console.log('viewDetail: ',this.viewDetail);
+ 
       }
     })
   }
@@ -32,4 +34,15 @@ export class ReceiptsModalComponent implements OnInit{
       this.store.dispatch(new DownloadBookingFile(filename));
     }
   }
+ downloadDemandORReceiptLetter(filename: any) {
+  // console.log('File DemandLetter: ', filename?.invoiceUrl);
+  // if (filename && filename != '') {
+  //   const blob = new Blob([''], { type: 'application/pdf' });
+  //   const url = URL.createObjectURL(blob);
+  //   window.open(url, '_blank');
+
+  //   // Clean up memory after opening
+  //   setTimeout(() => URL.revokeObjectURL(url), 10000);
+  // }
+}
 }
